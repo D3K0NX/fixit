@@ -1,24 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
+import Navbar from './components/Navbar';
+import Signup from './components/Signup';
+import Signin from './components/Signin';
+import GetProducts from './components/GetProducts';
+import AddProduct from './components/AddProduct';
+import MakePayment from './components/MakePayment';
+import NotFound from './components/NotFound';
 
 function App() {
+  // Protected Route wrapper component
+  const ProtectedRoute = ({ children }) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      return <Navigate to="/signin" replace />;
+    }
+    return children;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App min-vh-100 d-flex flex-column">
+        <Navbar />
+
+        <main className="flex-grow-1 py-4">
+          <Routes>
+            <Route path="/" element={<GetProducts />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            
+            {/* Protected route - only visible/logged-in users can access */}
+            <Route
+              path="/addproduct"
+              element={
+                <ProtectedRoute>
+                  <AddProduct />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path="/make_payment" element={<MakePayment />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+
+        <footer className="bg-dark text-white text-center py-3 mt-auto">
+          <div className="container">
+            <p className="mb-0">© {new Date().getFullYear()} Fixit Kenya – Quality Tools & Hardware</p>
+          </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
