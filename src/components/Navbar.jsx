@@ -20,7 +20,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
       <div className="container">
         <Link className="navbar-brand fw-bold fs-3" style={{ color: '#e65100' }} to="/">
-          Fixit
+          FixIt
         </Link>
 
         <button

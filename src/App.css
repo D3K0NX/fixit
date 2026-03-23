@@ -112,7 +112,7 @@ a {
 .price {
   font-size: 1.55rem;
   font-weight: 700;
-  color: var(--bs-primary);
+  color: rgb(232, 88, 10);
 }
 
 .old-price {
