@@ -63,9 +63,20 @@ const GetProducts = () => {
                       <h5 className="card-title fw-semibold mb-2">
                         {product.product_name}
                       </h5>
+                      
                       <p className="card-text text-muted small flex-grow-1 mb-3">
-                        {product.product_description || 'Quality tool for professional use'}
+                        {(() => {
+                          const desc = product.product_description;
+                          const limit = 100;
+                          if (!desc) return 'Quality tool for professional use';
+                          if (desc.length <= limit) return desc;
+
+                          const lastSpace = desc.lastIndexOf(' ', limit);
+
+                          return (lastSpace > 0 ? desc.slice(0, lastSpace) : desc.slice(0, limit)) + '...';
+                        })()}
                       </p>
+
                       <div className="mt-auto">
                         <div className="mb-3">
                           <span className="price">
@@ -78,7 +89,7 @@ const GetProducts = () => {
                             navigate('/make_payment', { state: { product } })
                           }
                         >
-                          Buy Now
+                          View Details
                         </button>
                       </div>
                     </div>
