@@ -16,6 +16,8 @@ const Navbar = () => {
     navigate('/signin');
   };
 
+ 
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
       <div className="container">
@@ -40,9 +42,14 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link fw-medium" to="/">Shop</Link>
             </li>
-            {isLoggedIn && (
+            {isLoggedIn && user.role === 'admin' && (
               <li className="nav-item">
                 <Link className="nav-link fw-medium" to="/addproduct">Add Product</Link>
+              </li>
+            )}
+            {isLoggedIn && user.role === 'admin' && (
+              <li className="nav-item">
+                <Link className="nav-link fw-medium" to="/admin">Admin</Link>
               </li>
             )}
           </ul>

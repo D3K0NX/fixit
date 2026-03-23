@@ -10,6 +10,7 @@ import GetProducts from './components/GetProducts';
 import AddProduct from './components/AddProduct';
 import MakePayment from './components/MakePayment';
 import NotFound from './components/NotFound';
+import Admin from './components/Admin';
 
 function App() {
   // Protected Route wrapper component
@@ -38,6 +39,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AddProduct />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route 
+              path='/admin'
+              element={
+                <ProtectedRoute>
+                  <Admin />
                 </ProtectedRoute>
               }
             />
