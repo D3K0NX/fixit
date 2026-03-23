@@ -49,7 +49,7 @@ function App() {
 
         <footer className="bg-dark text-white text-center py-3 mt-auto">
           <div className="container">
-            <p className="mb-0">© {new Date().getFullYear()} Fixit Kenya – Quality Tools & Hardware</p>
+            <p className="mb-0">&copy; {new Date().getFullYear()} Fixit Kenya – Quality Tools & Hardware</p>
           </div>
         </footer>
       </div>
