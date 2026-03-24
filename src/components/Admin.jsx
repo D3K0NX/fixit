@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { h6, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 const Admin = () => {
