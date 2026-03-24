@@ -8,7 +8,10 @@ const Admin = () => {
     const user = JSON.parse(localStorage.getItem('user'));
         if (!user) {
           navigate('/signin');
+        }else if (user[0].role === 'user'){
+            navigate('/')
         }
+        // console.log(user[0].role)
     }, [navigate]);
     return (
         <div className="container py-4">

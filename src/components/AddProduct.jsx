@@ -10,6 +10,8 @@ const AddProduct = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
       navigate('/signin');
+    }else if (user[0].role !== 'admin') {
+      navigate('/');
     }
   }, [navigate]);
 
