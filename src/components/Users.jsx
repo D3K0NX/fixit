@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { h6, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-
-const Admin = () => {
+const Users = () => {
     const navigate=useNavigate()
     useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -14,8 +13,8 @@ const Admin = () => {
         // console.log(user[0].role)
     }, [navigate]);
 
-    const handleUsersClick = () => {
-        navigate('/admin/users');
+    const handleHomeClick = () => {
+        navigate('/admin');
     }
 
     const handleUpdateClick = ( ) => {
@@ -27,9 +26,9 @@ const Admin = () => {
             <div className="row">
                 <div className="col-md-2 shadow adm-panel">
                     <hr />
-                    <h6>Home</h6>
+                    <h6 onClick={handleHomeClick}>Home</h6>
                     <hr />
-                    <h6 onClick={handleUsersClick}>Users</h6>
+                    <h6 >Users</h6>
                     <hr />
                     <h6 onClick={handleUpdateClick}>Update Product</h6>
                     <hr />
@@ -39,7 +38,7 @@ const Admin = () => {
                 </div>
             </div>
         </div>
-    )
-    
+    );
 }
-export default Admin
+
+export default Users;

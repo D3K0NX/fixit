@@ -11,6 +11,8 @@ import AddProduct from './components/AddProduct';
 import MakePayment from './components/MakePayment';
 import NotFound from './components/NotFound';
 import Admin from './components/Admin';
+import Users from './components/Users';
+import UpdateProduct from './components/UpdateProduct';
 
 function App() {
   // Protected Route wrapper component
@@ -48,6 +50,24 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Admin />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin/users"
+              element={
+                <ProtectedRoute>
+                  <Users />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path='/admin/update_product'
+              element={
+                <ProtectedRoute>
+                  <UpdateProduct />
                 </ProtectedRoute>
               }
             />
