@@ -31,8 +31,7 @@ function App() {
   return (
     <Router>
       <div className="App min-vh-100 d-flex flex-column">
-        <div className="site-shell">
-          <Navbar />
+        <Navbar />
 
           <main className="app-main">
             <Routes>
@@ -109,7 +108,6 @@ function App() {
               <p className="mb-0">&copy; {new Date().getFullYear()} All rights reserved.</p>
             </div>
           </footer>
-        </div>
       </div>
     </Router>
   );
