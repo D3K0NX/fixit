@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from './Skeleton';
 
 const GetProducts = () => {
   const [products, setProducts] = useState([]);
@@ -31,13 +32,7 @@ const GetProducts = () => {
     <div className="container">
       <h2 className="text-center fw-bold mb-5 text-fixit-orange">Available Tools</h2>
 
-      {loading && (
-        <div className="text-center my-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">{loading}</span>
-          </div>
-        </div>
-      )}
+      {loading && <Skeleton count={8} />}
 
       {error && <div className="alert alert-danger text-center">{error}</div>}
 
@@ -83,14 +78,34 @@ const GetProducts = () => {
                             KSh {Number(product.product_cost).toLocaleString()}
                           </span>
                         </div>
-                        <button
-                          className="btn btn-primary w-100 fw-bold"
-                          onClick={() =>
-                            navigate('/make_payment', { state: { product } })
-                          }
-                        >
-                          View Details
-                        </button>
+                        <div className="d-flex gap-2">
+                          <button
+                            className="btn btn-outline-primary flex-grow-1 fw-bold"
+                            onClick={() => {
+                              const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                              const existingIndex = cart.findIndex(item => 
+                                item.product_id === product.product_id || item.id === product.id
+                              );
+                              if (existingIndex >= 0) {
+                                cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+                              } else {
+                                cart.push({ ...product, quantity: 1 });
+                              }
+                              localStorage.setItem('cart', JSON.stringify(cart));
+                              window.dispatchEvent(new Event('cartUpdated'));
+                            }}
+                          >
+                            Add to Cart
+                          </button>
+                          <button
+                            className="btn btn-primary flex-grow-1 fw-bold"
+                            onClick={() =>
+                              navigate('/make_payment', { state: { product } })
+                            }
+                          >
+                            Buy Now
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
