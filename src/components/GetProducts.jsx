@@ -15,7 +15,7 @@ const GetProducts = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          'https://kindimanu.alwaysdata.net/api/get_product_details'
+          'https://eleazar.alwaysdata.net/api/get_product_details'
         );
         setProducts(response.data || []);
         setLoading('');
